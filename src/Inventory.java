@@ -1,4 +1,6 @@
-public class Inventory {
+
+public class Inventory{
+
     private boolean water;
     private boolean food;
     private boolean fireWood;

@@ -18,8 +18,6 @@ public class Game {
 
         System.out.println(heroes);
         System.out.print("Selected Hero : ");
-        player.selectChar(sc.nextLine());
-
 
 
     }

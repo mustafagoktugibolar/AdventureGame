@@ -1,83 +1,43 @@
-public class Player extends Inventory{
-    
-    //Inventory inventory;
+package Character;
+
+public class GameCharacter {
     private String name;
-    private String charName;
     private int damage;
     private int health;
     private int money;
     
 
-    
-
-    public Player(String name) {
+    public GameCharacter(String name, int damage, int health, int money) {
         this.name = name;
+        this.damage = damage;
+        this.health = health;
+        this.money = money;
     }
 
-
-
+    
+    public int getDamage() {
+        return damage;
+    }
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+    public int getHealth() {
+        return health;
+    }
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    public int getMoney() {
+        return money;
+    }
+    public void setMoney(int money) {
+        this.money = money;
+    }
     public String getName() {
         return name;
     }
-
-
-
     public void setName(String name) {
         this.name = name;
     }
 
-
-
-    public int getDamage() {
-        return damage;
-    }
-
-
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
-
-
-    public int getHealth() {
-        return health;
-    }
-
-
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-
-
-    public int getMoney() {
-        return money;
-    }
-
-
-
-    public void setMoney(int money) {
-        this.money = money;
-    }
-
-
-
-    public String getCharName() {
-        return charName;
-    }
-
-
-
-    public void setCharName(String charName) {
-        this.charName = charName;
-    }
-
-
-    public void selectChar(){
-        
-
-    }
-    
 }
