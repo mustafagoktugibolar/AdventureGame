@@ -1,5 +1,9 @@
 package Character;
 import java.util.Scanner;
+import Location.Location;
+import Location.Normal.SafeHouse;
+import Location.Normal.ToolStore;
+
 
 public class Player extends Inventory{
     
@@ -102,6 +106,29 @@ public class Player extends Inventory{
                 break;            
         }
     }
+    public void selectLocation() throws InterruptedException{
+        Location location = null;
+        
+        String locations = "Locations : \n"
+        +"\t1 : Safe House \n"
+        +"\t2 : Tool Store \n";
+        
+        System.out.println(locations);
+        System.out.print("Select Location : ");
+
+        switch(sc.nextInt()){
+            case 1 :
+                location = new SafeHouse(this);
+                break;
+            case 2 : 
+                location = new ToolStore(this);
+                break;
+            default :
+                location = new SafeHouse(this);
+                break;
+        }
+        location.onLocation();
+    }
     private void initPlayer(GameCharacter character){
         this.setDamage(character.getDamage());
         this.setHealth(character.getHealth());
@@ -109,6 +136,6 @@ public class Player extends Inventory{
         this.setCharName(character.getName());
         System.out.println(this.name + " named " + this.charName + " selected!");
     }
-
+    
     
 }

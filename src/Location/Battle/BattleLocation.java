@@ -1,6 +1,7 @@
-package Location;
+package Location.Battle;
 
 import Character.Player;
+import Location.Location;
 
 public abstract class BattleLocation extends Location{
 

@@ -25,7 +25,7 @@ public void setName(String name) {
     this.name = name;
 } 
 
-public abstract boolean onLocation();
+public abstract boolean onLocation() throws InterruptedException;
 
    
 }
