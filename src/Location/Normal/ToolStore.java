@@ -1,19 +1,82 @@
 package Location.Normal;
 
 import Character.Player;
+import Location.Armor;
 import Location.Location;
+import Location.Weapon;
 
 public class ToolStore extends Location{
-
+    
     public ToolStore(Player player) {
         super(player, "Tool Store");
         
     }
 
     @Override
-    public boolean onLocation() {
-        System.out.println("You are on Tool Store");
+    public boolean onLocation() throws InterruptedException {
+        String process = "Processes :\n"
+        + "\t1 - Weapons \n"
+        + "\t2 - Armors \n"
+        + "\t3 - exit";
+
+        System.out.println("Welcome to the Tool Store!");
+        System.out.println(process);
+        System.out.print("Select Process : ");
+        int selectedCase = sc.nextInt();
+
+        while(selectedCase < 1 || selectedCase > 3){
+            System.out.print("Unvalid Process! | Try Again \n"+
+            "Select Process : ");
+            selectedCase = sc.nextInt();   
+        }
+        switch(selectedCase){
+            case 1 :
+                printWeapons();
+                
+            case 2 :
+                printArmors();
+            case 3 :
+                System.out.println("Leaving Tool Store...");
+                Thread.sleep(2000);
+                return true;
+        }
         return true;
+    }
+    private void printWeapons(){
+        for (Weapon wep : Weapon.weapons()) {
+            System.out.println(wep.getId() + " - " + wep.getName() 
+            + "\tDamage : " + wep.getDamage() 
+            + "\tPrice : " + wep.getPrice());
+        }
+
+        System.out.print("Select Weapon : ");
+        int selectedWeaponID = sc.nextInt();
+
+        while(selectedWeaponID < 1 || selectedWeaponID > Weapon.weapons().length){
+            System.out.print("Unvalid Process! | Try Again \n"+
+            "Select Weapon : ");
+            selectedWeaponID = sc.nextInt();
+        }
+
+        Weapon weapon = Weapon.getWeaponByID(selectedWeaponID);
+        if(weapon != null){
+            if(weapon.getPrice() > this.getPlayer().getMoney()){
+                System.out.println("insufficient balance | Current Balance : " + this.getPlayer().getMoney());
+            }
+            else{
+                int balance = this.getPlayer().getMoney() - weapon.getPrice();
+                this.getPlayer().setMoney(balance);
+                System.out.println("You Purchased " + weapon.getName() +"!\n"
+                +"New Balance : " + this.getPlayer().getMoney());
+            }
+        }
+    }
+    private void printArmors(){
+        for (Armor wep : Armor.armor()) {
+            System.out.println("\t" + wep.getId() + " - " + wep.getName() 
+            + "\tDodge : " + wep.getDodge() 
+            + "\tPrice : " + wep.getPrice());
+        }
     }
     
 }

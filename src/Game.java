@@ -3,7 +3,6 @@ import Character.Player;
 import Location.Location;
 import Location.Normal.SafeHouse;
 import Location.Normal.ToolStore;
-import Location.*;
 
 public class Game {
     private Scanner sc = new Scanner(System.in);

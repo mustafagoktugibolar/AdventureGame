@@ -82,9 +82,10 @@ public class Player extends Inventory{
 
     public void selectChar(){
         GameCharacter[] charList= {new Samurai(), new Archer(), new Knight()};
-
+        System.out.println("Character Names : ");
         for (GameCharacter gameCharacter : charList) {
-            System.out.println("Character Name : " + gameCharacter.getName() 
+            System.out.println("\t" + gameCharacter.getName()
+            + " :" 
             + "\t Health : " + gameCharacter.getHealth() 
             + "\t Damage : " + gameCharacter.getDamage() 
             + "\t Money : " + gameCharacter.getMoney());

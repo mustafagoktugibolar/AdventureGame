@@ -1,9 +1,12 @@
 package Location;
+import java.util.Scanner;
+
 import Character.Player;
 
 public abstract class Location {
     private Player player;
     private String name;
+    public static Scanner sc = new Scanner(System.in);
 
    public Location(Player player, String name){
         this.player = player;
