@@ -12,11 +12,25 @@ public class Player extends Inventory{
     private int damage;
     private int health;
     private int money;
+    private int HEALTH;
     private Scanner sc = new Scanner(System.in);
-    
+    Inventory inventory;
 
     public Player(String name) {
         this.name = name;
+        this.inventory = new Inventory();
+    }
+
+
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 
 
@@ -34,7 +48,7 @@ public class Player extends Inventory{
 
 
     public int getDamage() {
-        return damage;
+        return damage + this.getInventory().getWeapon().getDamage();
     }
 
 
@@ -46,7 +60,7 @@ public class Player extends Inventory{
 
 
     public int getHealth() {
-        return health;
+        return health + this.getInventory().getArmor().getDodge();
     }
 
 
@@ -78,6 +92,12 @@ public class Player extends Inventory{
     public void setCharName(String charName) {
         this.charName = charName;
     }
+
+
+    public int getHEALTH() {
+        return HEALTH;
+    }
+
 
 
     public void selectChar(){
@@ -135,7 +155,15 @@ public class Player extends Inventory{
         this.setHealth(character.getHealth());
         this.setMoney(character.getMoney());
         this.setCharName(character.getName());
+        HEALTH = this.getHealth();
         System.out.println(this.name + " named " + this.charName + " selected!");
+    }
+
+    public void printInfo(){
+        System.out.println("Heath : " + this.getHealth()
+        + "\n Damage : " + this.getDamage()
+        + "\n Money : " + this.getMoney()
+        + "\n Weapon : " + this.getInventory().getWeapon().getName());
     }
     
     

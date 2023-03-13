@@ -14,6 +14,7 @@ public class Weapon {
         this.price = price;
     }
 
+    //Creating Weapon
     public static Weapon[] weapons(){
         Weapon[] weaponList = new Weapon[3];
         weaponList[0] = new Weapon("Pistol", 1, 2, 25);

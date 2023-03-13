@@ -1,52 +1,38 @@
 package Character;
 
+import Location.Weapon;
+import Location.Armor;
+
 public class Inventory{
 
-    private boolean water;
-    private boolean food;
-    private boolean fireWood;
-    private String weaponName;
-    private int weaponDamage;
-    private int armorDefence;
+    // private boolean water;
+    // private boolean food;
+    // private boolean fireWood;
+    // private String weaponName;
+    // private int weaponDamage;
+    // private int armorDefence;
+    private Weapon weapon;
+    private Armor armor;
 
-    
-    public boolean isWater() {
-        return water;
-    }
-    public void setWater(boolean water) {
-        this.water = water;
-    }
-    public boolean isFood() {
-        return food;
-    }
-    public void setFood(boolean food) {
-        this.food = food;
-    }
-    public boolean isFireWood() {
-        return fireWood;
-    }
-    public void setFireWood(boolean fireWood) {
-        this.fireWood = fireWood;
-    }
-    public String getWeaponName() {
-        return weaponName;
-    }
-    public void setWeaponName(String weaponName) {
-        this.weaponName = weaponName;
-    }
-    public int getWeaponDamage() {
-        return weaponDamage;
-    }
-    public void setWeaponDamage(int weaponDamage) {
-        this.weaponDamage = weaponDamage;
-    }
-    public int getArmorDefence() {
-        return armorDefence;
-    }
-    public void setArmorDefence(int armorDefence) {
-        this.armorDefence = armorDefence;
+    public Inventory(){
+        this.weapon = new Weapon("Fist", 0, 0, 0);
+        this.armor = new Armor("body", 0, 0, 0);
     }
 
-    
-    
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public Armor getArmor() {
+        return armor;
+    }
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+    }
+
 }

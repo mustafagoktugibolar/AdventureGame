@@ -20,6 +20,7 @@ public class Game {
 
         Location location = null;
         while(true){
+            player.printInfo();
             String locations = "Locations : \n"
             +"\t1 : Safe House  \n"
             +"\t2 : Tool Store \n";
@@ -27,6 +28,7 @@ public class Game {
             System.out.println(locations);
             System.out.print("Select Location : ");
 
+            //Location Selection
             switch(sc.nextInt()){
                 case 1 :
                     location = new SafeHouse(player);
@@ -38,6 +40,7 @@ public class Game {
                     location = new SafeHouse(player);
                     break;
             }
+            //End Of the Game
             if(!location.onLocation()){
                 System.out.println("Game Over!");
                 break;

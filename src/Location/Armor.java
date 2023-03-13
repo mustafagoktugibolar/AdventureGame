@@ -14,6 +14,7 @@ public class Armor {
         this.price = price;
     }
 
+    //Creating Armor
     public static Armor[] armor(){
         Armor[] armorList = new Armor[3];
         armorList[0] = new Armor("Light", 1, 1, 15);
@@ -21,6 +22,16 @@ public class Armor {
         armorList[2] = new Armor("Heavy", 3, 5, 40);
         return armorList;
     }
+
+    public static Armor getArmorByID(int id){
+        for (Armor a : armor()) {
+            if(a.getId() == id){
+                return a;
+            }
+        }
+        return null;
+    }
+    
     public String getName() {
         return name;
     }

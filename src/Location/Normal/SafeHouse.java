@@ -12,11 +12,16 @@ public class SafeHouse extends Location {
 
     @Override
     public boolean onLocation() throws InterruptedException {
+        renewHealth();
         System.out.println("You are on safe House!\n"
         + "Health Renewed!\n"
         + "Health : " + this.getPlayer().getHealth());
         Thread.sleep(3000);
         return true;
+    }
+
+    private void renewHealth(){
+        this.getPlayer().setHealth(this.getPlayer().getHEALTH());
     }
     
 }
