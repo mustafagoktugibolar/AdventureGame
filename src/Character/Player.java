@@ -160,10 +160,14 @@ public class Player extends Inventory{
     }
 
     public void printInfo(){
-        System.out.println("Heath : " + this.getHealth()
-        + "\n Damage : " + this.getDamage()
-        + "\n Money : " + this.getMoney()
-        + "\n Weapon : " + this.getInventory().getWeapon().getName());
+        System.out.println("Player Info : "
+        + "\n \tHealth : " + this.getHealth()
+        + "\n \tArmor : " + this.getInventory().getArmor().getName() 
+        + "\n \tDodge : " + this.getInventory().getArmor().getDodge() 
+        + "\n \tWeapon : " + this.getInventory().getWeapon().getName()
+        + "\n \tDamage : " + this.getDamage()
+        + "\n \tMoney : " + this.getMoney());
+        
     }
     
     

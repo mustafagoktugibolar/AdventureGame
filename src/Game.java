@@ -22,14 +22,20 @@ public class Game {
         while(true){
             player.printInfo();
             String locations = "Locations : \n"
-            +"\t1 : Safe House  \n"
-            +"\t2 : Tool Store \n";
+            + "\t0 : Leave The Game \n"
+            + "\t1 : Safe House  \n"
+            + "\t2 : Tool Store \n";
 
             System.out.println(locations);
             System.out.print("Select Location : ");
 
             //Location Selection
             switch(sc.nextInt()){
+                case 0 :
+                    System.out.println("Leaving The Game...");
+                    location = null;
+                    Thread.sleep(2000);
+                    break;
                 case 1 :
                     location = new SafeHouse(player);
                     break;
@@ -41,6 +47,10 @@ public class Game {
                     break;
             }
             //End Of the Game
+            if(location == null){
+                break;
+            }
+
             if(!location.onLocation()){
                 System.out.println("Game Over!");
                 break;

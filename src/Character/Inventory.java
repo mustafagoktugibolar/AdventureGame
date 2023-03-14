@@ -15,8 +15,8 @@ public class Inventory{
     private Armor armor;
 
     public Inventory(){
-        this.weapon = new Weapon("Fist", 0, 0, 0);
-        this.armor = new Armor("body", 0, 0, 0);
+        this.weapon = new Weapon("Fist", -1, 0, 0);
+        this.armor = new Armor("none", -1, 0, 0);
     }
 
     public Weapon getWeapon() {
