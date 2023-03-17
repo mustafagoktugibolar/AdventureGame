@@ -1,6 +1,10 @@
 import java.util.Scanner;
 import Character.Player;
 import Location.Location;
+import Location.Battle.Cave;
+import Location.Battle.River;
+import Location.Battle.Woods;
+import Location.Battle.*;
 import Location.Normal.SafeHouse;
 import Location.Normal.ToolStore;
 
@@ -24,7 +28,10 @@ public class Game {
             String locations = "Locations : \n"
             + "\t0 : Leave The Game \n"
             + "\t1 : Safe House  \n"
-            + "\t2 : Tool Store \n";
+            + "\t2 : Tool Store \n"
+            + "\t3 : Cave \n"
+            + "\t4 : Woods \n"
+            + "\t5 : River";
 
             System.out.println(locations);
             System.out.print("Select Location : ");
@@ -42,6 +49,15 @@ public class Game {
                 case 2 : 
                     location = new ToolStore(player);
                     break;
+                case 3 :
+                    location = new Cave(player);
+                    break;
+                case 4 :
+                    location = new Woods(player);
+                    break;  
+                case 5 :
+                    location = new River(player);
+                    break;        
                 default :
                     location = new SafeHouse(player);
                     break;

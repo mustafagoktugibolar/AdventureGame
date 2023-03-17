@@ -48,7 +48,6 @@ public class ToolStore extends Location{
                     System.out.println("Leaving Tool Store...");
                     showMenu = false;
                     Thread.sleep(2000);
-                    return false;
             }
         }
         return true;

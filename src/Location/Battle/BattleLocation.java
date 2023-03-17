@@ -8,6 +8,8 @@ public abstract class BattleLocation extends Location{
 
     private Obstacle obstacle;
     private String award;
+
+
     public BattleLocation(Player player, String name, Obstacle obstacle, String award) {
         super(player, name);
         this.obstacle = obstacle;
@@ -39,7 +41,8 @@ public abstract class BattleLocation extends Location{
     @Override
     public
     boolean onLocation() {
-        return false;
+        System.out.println("You are in " + this.getName());
+        return true;
     }
     
 }

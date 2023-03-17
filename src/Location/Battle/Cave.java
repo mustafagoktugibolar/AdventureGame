@@ -1,5 +1,12 @@
 package Location.Battle;
 
-public class Cave {
+import Character.Player;
+import Location.Battle.Obstacles.Zombie;
+
+public class Cave extends BattleLocation{
+
+    public Cave(Player player){
+        super(player, "Cave", new Zombie(), "a");
+    }
     
 }

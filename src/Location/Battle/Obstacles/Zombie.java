@@ -2,7 +2,7 @@ package Location.Battle.Obstacles;
 
 public class Zombie extends Obstacle{
 
-    public Zombie(String name, int id, int damage, int health) {
+    public Zombie() {
         super("Zombie", 1, 3, 10);
 
     }
