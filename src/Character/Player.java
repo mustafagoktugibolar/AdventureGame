@@ -1,6 +1,9 @@
 package Character;
 import java.util.Scanner;
 import Location.Location;
+import Location.Battle.Cave;
+import Location.Battle.River;
+import Location.Battle.Woods;
 import Location.Normal.SafeHouse;
 import Location.Normal.ToolStore;
 
@@ -131,25 +134,56 @@ public class Player extends Inventory{
         Location location = null;
         
         String locations = "Locations : \n"
-        +"\t1 : Safe House \n"
-        +"\t2 : Tool Store \n";
-        
-        System.out.println(locations);
-        System.out.print("Select Location : ");
+        + "\t0 : Leave The Game \n"
+        + "\t1 : Safe House  \n"
+        + "\t2 : Tool Store \n"
+        + "\t3 : Cave \n"
+        + "\t4 : Woods \n"
+        + "\t5 : River";
 
-        switch(sc.nextInt()){
-            case 1 :
-                location = new SafeHouse(this);
+            while(true){
+            System.out.println(locations);
+            System.out.print("Select Location : ");
+    
+            switch(sc.nextInt()){
+                case 0 :
+                    System.out.println("Leaving The Game...");
+                    location = null;
+                    Thread.sleep(2000);
+                    break;
+                case 1 :
+                    location = new SafeHouse(this);
+                    break;
+                case 2 : 
+                    location = new ToolStore(this);
+                    break;
+                case 3 :
+                    location = new Cave(this);   
+                    break;
+                case 4 :
+                    location = new Woods(this);
+                    break;       
+                case 5 :
+                    location = new River(this);
+                    break;              
+                default :
+                    location = new SafeHouse(this);
+                    break;
+            }
+            if(location == null){
                 break;
-            case 2 : 
-                location = new ToolStore(this);
+            }
+
+            if(!location.onLocation()){
+                System.out.println("Game Over!");
                 break;
-            default :
-                location = new SafeHouse(this);
-                break;
+            }
+               
         }
-        location.onLocation();
+        
     }
+    
+
     private void initPlayer(GameCharacter character){
         this.setDamage(character.getDamage());
         this.setHealth(character.getHealth());

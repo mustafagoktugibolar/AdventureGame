@@ -10,6 +10,7 @@ public abstract class Location {
 
    public Location(Player player, String name){
         this.player = player;
+        this.name = name;
    }
 
 public Player getPlayer() {

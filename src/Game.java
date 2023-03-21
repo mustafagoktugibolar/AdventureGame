@@ -1,12 +1,6 @@
 import java.util.Scanner;
 import Character.Player;
-import Location.Location;
-import Location.Battle.Cave;
-import Location.Battle.River;
-import Location.Battle.Woods;
-import Location.Battle.*;
-import Location.Normal.SafeHouse;
-import Location.Normal.ToolStore;
+
 
 public class Game {
     private Scanner sc = new Scanner(System.in);
@@ -20,61 +14,10 @@ public class Game {
         Player player = new Player(playerName);
         System.out.println(player.getName() + " Named Player Created...");
         Thread.sleep(2000);
+
         player.selectChar();
+        player.selectLocation();
 
-        Location location = null;
-        while(true){
-            player.printInfo();
-            String locations = "Locations : \n"
-            + "\t0 : Leave The Game \n"
-            + "\t1 : Safe House  \n"
-            + "\t2 : Tool Store \n"
-            + "\t3 : Cave \n"
-            + "\t4 : Woods \n"
-            + "\t5 : River";
-
-            System.out.println(locations);
-            System.out.print("Select Location : ");
-
-            //Location Selection
-            switch(sc.nextInt()){
-                case 0 :
-                    System.out.println("Leaving The Game...");
-                    location = null;
-                    Thread.sleep(2000);
-                    break;
-                case 1 :
-                    location = new SafeHouse(player);
-                    break;
-                case 2 : 
-                    location = new ToolStore(player);
-                    break;
-                case 3 :
-                    location = new Cave(player);
-                    break;
-                case 4 :
-                    location = new Woods(player);
-                    break;  
-                case 5 :
-                    location = new River(player);
-                    break;        
-                default :
-                    location = new SafeHouse(player);
-                    break;
-            }
-            //End Of the Game
-            if(location == null){
-                break;
-            }
-
-            if(!location.onLocation()){
-                System.out.println("Game Over!");
-                break;
-            }
-
-        }
-
-
-
+           
     }
 }
