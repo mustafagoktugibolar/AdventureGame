@@ -1,6 +1,8 @@
 package Character;
 import java.util.Scanner;
 import Location.Location;
+import Location.Weapon;
+import Location.Armor;
 import Location.Battle.Cave;
 import Location.Battle.River;
 import Location.Battle.Woods;
@@ -48,10 +50,14 @@ public class Player extends Inventory{
         this.name = name;
     }
 
+    public int getTotalDamage(){
+        return damage + this.getWeapon().getDamage();
+    }
+
 
 
     public int getDamage() {
-        return damage + this.getInventory().getWeapon().getDamage();
+        return damage;
     }
 
 
@@ -63,7 +69,7 @@ public class Player extends Inventory{
 
 
     public int getHealth() {
-        return health + this.getInventory().getArmor().getDodge();
+        return health + this.getArmor().getDodge();
     }
 
 
@@ -99,6 +105,14 @@ public class Player extends Inventory{
 
     public int getHEALTH() {
         return HEALTH;
+    }
+
+    public Weapon getWeapon(){
+        return this.getInventory().getWeapon();
+    }
+
+    public Armor getArmor(){
+        return this.getInventory().getArmor();
     }
 
 
@@ -195,11 +209,12 @@ public class Player extends Inventory{
 
     public void printInfo(){
         System.out.println("Player Info : "
+        + "\n \tName : " + this.name 
         + "\n \tHealth : " + this.getHealth()
-        + "\n \tArmor : " + this.getInventory().getArmor().getName() 
-        + "\n \tDodge : " + this.getInventory().getArmor().getDodge() 
-        + "\n \tWeapon : " + this.getInventory().getWeapon().getName()
-        + "\n \tDamage : " + this.getDamage()
+        + "\n \tArmor : " + this.getArmor().getName() 
+        + "\n \tDodge : " + this.getArmor().getDodge() 
+        + "\n \tWeapon : " + this.getWeapon().getName()
+        + "\n \tDamage : " + this.getTotalDamage()
         + "\n \tMoney : " + this.getMoney());
         
     }

@@ -5,12 +5,6 @@ import Location.Armor;
 
 public class Inventory{
 
-    // private boolean water;
-    // private boolean food;
-    // private boolean fireWood;
-    // private String weaponName;
-    // private int weaponDamage;
-    // private int armorDefence;
     private Weapon weapon;
     private Armor armor;
 

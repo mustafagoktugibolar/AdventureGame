@@ -92,7 +92,7 @@ public class ToolStore extends Location{
                     this.getPlayer().setMoney(balance);
 
                     System.out.println("Previous Weapon : " 
-                    + this.getPlayer().getInventory().getWeapon().getName());
+                    + this.getPlayer().getWeapon().getName());
 
                     //WEAPON ADDEN TO THE INVENTORY
                     this.getPlayer().getInventory().setWeapon(weapon);
@@ -142,7 +142,7 @@ public class ToolStore extends Location{
                     this.getPlayer().setMoney(balance);
 
                     System.out.println("Previous Armor : " 
-                    + this.getPlayer().getInventory().getArmor().getName());
+                    + this.getPlayer().getArmor().getName());
 
                     //ARMOR ADDED TO THE INVENTORY
                     this.getPlayer().getInventory().setArmor(armor);
