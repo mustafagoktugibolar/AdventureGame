@@ -26,6 +26,7 @@ public class ToolStore extends Location{
 
         while(showMenu){
             System.out.println(process);
+            System.out.println();
             System.out.print("Select Process : ");
             int selectedCase = sc.nextInt();
 
@@ -47,6 +48,7 @@ public class ToolStore extends Location{
                 case 3 :
                     System.out.println("Leaving Tool Store...");
                     showMenu = false;
+                    sc.nextLine();
                     Thread.sleep(2000);
             }
         }
@@ -54,7 +56,8 @@ public class ToolStore extends Location{
     }
 
     //WEAPONS    
-    private void printWeapons(){    
+    private void printWeapons(){ 
+        System.out.println("Currnet Ballance : " + getPlayer().getMoney());   
         //Print Weapons
         System.out.println("Weapons : ");
         for (Weapon wep : Weapon.weapons()) {
@@ -62,7 +65,7 @@ public class ToolStore extends Location{
             + "\tDamage : " + wep.getDamage() 
             + "\tPrice : " + wep.getPrice());
         }
-        System.out.println("\n \t0 - leave");
+        System.out.println("\t0 - leave");
     }
 
 
@@ -106,6 +109,7 @@ public class ToolStore extends Location{
 
     //ARMORS    
     private void printArmors(){
+        System.out.println("Currnet Ballance : " + getPlayer().getMoney());
         //Print Armors
         System.out.println("Armors : ");
         for (Armor wep : Armor.armor()) {

@@ -16,6 +16,7 @@ public class SafeHouse extends Location {
         System.out.println("You are on safe House!\n"
         + "Health Renewed!\n"
         + "Health : " + this.getPlayer().getHealth());
+        System.out.println();
         Thread.sleep(3000);
         return true;
     }

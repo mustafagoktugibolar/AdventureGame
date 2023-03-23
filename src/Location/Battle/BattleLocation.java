@@ -12,6 +12,7 @@ public abstract class BattleLocation extends Location{
     private String award;
     private int maxObstacle;
     private static int tempObsNumber;
+    private boolean isRun = false;
 
 
 
@@ -73,7 +74,12 @@ public abstract class BattleLocation extends Location{
         if(selectedAction.equals("F")){
             //FIGHT
             if(combat(obsNumber)){
-                System.out.println("You Killed All Obstacles!");
+                if(tempObsNumber == 0){
+                    System.out.println("You Killed All Obstacles!");
+                }
+                else{
+                    System.out.println("Running Back!");
+                }
                 return true;
             }
            
@@ -85,24 +91,28 @@ public abstract class BattleLocation extends Location{
 
 
         if(this.getPlayer().getHealth() == 0){
-            System.out.println("You Are Dead!");
+            System.out.println("\nYou Are Dead!");
             return false;
         }
-        return false;
+        return true;
     }
 
     public boolean combat(int obsNumber) throws InterruptedException{
 
         tempObsNumber = obsNumber;
+        printStats();
         for (int i = 1; i <= obsNumber; i++) {
-            printStats();
-
+            
             while((this.getPlayer().getHealth() > 0) && (this.getObstacle().getHealth() > 0)){
                 fight(tempObsNumber);
+
+                if(isRun){
+                    return true;
+                }
                  
             }   
         }
-        return true;
+        return false;
     }
 
 
@@ -145,11 +155,15 @@ public abstract class BattleLocation extends Location{
                 System.out.println("You Killed the Obstacle! | Reward Added to the Inventory!");
                 this.getPlayer().setMoney(this.getPlayer().getMoney() + this.getObstacle().getAward());
                 tempObsNumber--;
-                if(tempObsNum > 0){
+                if(tempObsNumber > 0){
                     this.getObstacle().setHealthToDefault();
                 }
                
             }
+        }
+        else{
+            isRun = true;
+            
         }
         
     }  

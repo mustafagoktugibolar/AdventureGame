@@ -12,8 +12,9 @@ public class Game {
         String playerName = sc.nextLine();
 
         Player player = new Player(playerName);
-        System.out.println(player.getName() + " Named Player Created...\n");
+        System.out.println(player.getName() + " Named Player Created...");
         Thread.sleep(2000);
+        System.out.println();
 
         player.selectChar();
         player.selectLocation();

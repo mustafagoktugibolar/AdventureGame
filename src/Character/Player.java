@@ -129,19 +129,19 @@ public class Player extends Inventory{
         }
         System.out.print("Select Hero : ");
 
-        switch(sc.nextLine()){
-            case "Samurai" :
+        switch(sc.nextLine().toUpperCase()){
+            case "SAMURAI" :
                 initPlayer(charList[0]);
                 break;
-            case "Archer" : 
+            case "ARCHER" : 
                 initPlayer(charList[1]);
                 break;
-            case "Knight" : 
+            case "KNIGHT" : 
                 initPlayer(charList[2]);
                 break;  
             default :
-                initPlayer(charList[0]);
-                break;            
+                initPlayer(charList[0]);  
+                break;         
         }
     }
     public void selectLocation() throws InterruptedException{
@@ -153,7 +153,8 @@ public class Player extends Inventory{
         + "\t2 : Tool Store \n"
         + "\t3 : Cave \n"
         + "\t4 : Woods \n"
-        + "\t5 : River";
+        + "\t5 : River \n"
+        + "\t6 : Print Info\n";
 
             while(true){
             System.out.println(locations);
@@ -179,7 +180,11 @@ public class Player extends Inventory{
                     break;       
                 case 5 :
                     location = new River(this);
-                    break;              
+                    break;  
+                case 6 : 
+                    printInfo();
+                    Thread.sleep(1500);
+                    continue;
                 default :
                     location = new SafeHouse(this);
                     break;
