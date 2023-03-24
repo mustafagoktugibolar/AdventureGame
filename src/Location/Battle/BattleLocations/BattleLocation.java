@@ -1,23 +1,36 @@
-package Location.Battle;
+package Location.Battle.BattleLocations;
 
 import java.util.Random;
 import Character.Player;
 import Location.Location;
+import Location.Battle.Awards.Award;
 import Location.Battle.Obstacles.Obstacle;
 
 public abstract class BattleLocation extends Location{
 
     private Obstacle obstacle;
-    private String award;
+    //private Award award;
+    private boolean hasAward;
+
+    public boolean isHasAward() {
+        return hasAward;
+    }
+
+
+    public void setHasAward(boolean hasAward) {
+        this.hasAward = hasAward;
+    }
+
+    private Award award;
     private int maxObstacle;
-    private static int tempObsNumber;
+    private int tempObsNumber;
     private boolean isRun = false;
     private Random random = new Random();
     private boolean queue;
 
 
 
-    public BattleLocation(Player player, String name, Obstacle obstacle, String award, int maxObstacle) {
+    public BattleLocation(Player player, String name, Obstacle obstacle, Award award, int maxObstacle) {
         super(player, name);
         this.obstacle = obstacle;
         this.award = award;
@@ -31,17 +44,17 @@ public abstract class BattleLocation extends Location{
     }
 
 
-    public void setObstacle(Obstacle obstacle) {
-        this.obstacle = obstacle;
-    }
+    // public void setObstacle(Obstacle obstacle) {
+    //     this.obstacle = obstacle;
+    // }
 
 
-    public String getAward() {
+    public Award getAward() {
         return award;
     }
 
 
-    public void setAward(String award) {
+    public void setAward(Award award) {
         this.award = award;
     }
 
@@ -82,6 +95,7 @@ public abstract class BattleLocation extends Location{
             randomQueue();
             if(combat(obsNumber)){
                 if(tempObsNumber == 0){
+                    this.getAward().setHasAward(true);
                     System.out.println("You Killed All Obstacles!");
                 }
                 else{
@@ -147,6 +161,9 @@ public abstract class BattleLocation extends Location{
                 }
                 afterHit();
             
+            }
+            else{
+                isRun = true;
             }
         }
             //CHECK OBSTACLE HEALTH AND HIT

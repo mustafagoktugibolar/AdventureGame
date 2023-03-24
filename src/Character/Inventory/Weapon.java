@@ -1,4 +1,4 @@
-package Location;
+package Character.Inventory;
 
 public class Weapon {
     private String name;

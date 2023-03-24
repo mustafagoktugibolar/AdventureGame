@@ -1,9 +1,9 @@
 package Location.Normal;
 
 import Character.Player;
-import Location.Armor;
+import Character.Inventory.Armor;
+import Character.Inventory.Weapon;
 import Location.Location;
-import Location.Weapon;
 
 public class ToolStore extends Location{
     private int selectedArmorID = 0;

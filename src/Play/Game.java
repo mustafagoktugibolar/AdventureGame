@@ -1,3 +1,4 @@
+package Play;
 import java.util.Scanner;
 import Character.Player;
 

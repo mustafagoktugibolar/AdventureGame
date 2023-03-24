@@ -1,4 +1,4 @@
-package Character;
+package Character.GameCharacters;
 
 public class Knight extends GameCharacter{
 

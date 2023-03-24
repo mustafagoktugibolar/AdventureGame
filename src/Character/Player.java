@@ -1,11 +1,18 @@
 package Character;
 import java.util.Scanner;
+
+import Character.GameCharacters.Archer;
+import Character.GameCharacters.GameCharacter;
+import Character.GameCharacters.Knight;
+import Character.GameCharacters.Samurai;
+import Character.Inventory.Armor;
+import Character.Inventory.Inventory;
+import Character.Inventory.Weapon;
 import Location.Location;
-import Location.Weapon;
-import Location.Armor;
-import Location.Battle.Cave;
-import Location.Battle.River;
-import Location.Battle.Woods;
+import Location.Battle.Awards.Award;
+import Location.Battle.BattleLocations.Cave;
+import Location.Battle.BattleLocations.River;
+import Location.Battle.BattleLocations.Woods;
 import Location.Normal.SafeHouse;
 import Location.Normal.ToolStore;
 
@@ -19,7 +26,10 @@ public class Player extends Inventory{
     private int money;
     private int HEALTH;
     private Scanner sc = new Scanner(System.in);
-    Inventory inventory;
+    Inventory inventory = null;
+    
+    
+
 
     public Player(String name) {
         this.name = name;
@@ -115,6 +125,10 @@ public class Player extends Inventory{
         return this.getInventory().getArmor();
     }
 
+    public Award getAward(){
+        return this.getInventory().getAward();
+    }
+
 
 
     public void selectChar(){
@@ -143,6 +157,7 @@ public class Player extends Inventory{
                 initPlayer(charList[0]);  
                 break;         
         }
+        
     }
     public void selectLocation() throws InterruptedException{
         Location location = null;
@@ -165,7 +180,7 @@ public class Player extends Inventory{
                     System.out.println("Leaving The Game...");
                     location = null;
                     Thread.sleep(2000);
-                    break;
+                    break;    
                 case 1 :
                     location = new SafeHouse(this);
                     break;
@@ -173,18 +188,37 @@ public class Player extends Inventory{
                     location = new ToolStore(this);
                     break;
                 case 3 :
-                    location = new Cave(this);   
-                    break;
+                    if(this.getAward().getHasAward() == false){
+                        location = new Cave(this);
+                        break;
+                    }
+                    else{
+                        System.out.println("You Took The Award! | Go To Another Location!");
+                        continue;
+                    }
                 case 4 :
-                    location = new Woods(this);
-                    break;       
+                    if(this.getAward().getHasAward() == false){
+                        location = new Woods(this);
+                        break;
+                    }
+                    else{
+                        System.out.println("You Took The Award! | Go To Another Location!");
+                        continue;
+                    }  
                 case 5 :
-                    location = new River(this);
-                    break;  
+                    if(this.getAward().getHasAward() == false){
+                        location = new River(this);
+                        break;
+                    }
+                    else{
+                        System.out.println("You Took The Award! | Go To Another Location!");
+                       continue;
+                    }  
                 case 6 : 
                     printInfo();
                     Thread.sleep(1500);
                     continue;
+
                 default :
                     location = new SafeHouse(this);
                     break;
@@ -217,6 +251,7 @@ public class Player extends Inventory{
         System.out.println("Player Info : "
         + "\n \tName : " + this.name 
         + "\n \tHealth : " + this.getHealth()
+        + "\n \tAwards : " +  this.getAward().getName()
         + "\n \tArmor : " + this.getArmor().getName() 
         + "\n \tDodge : " + this.getArmor().getDodge() 
         + "\n \tWeapon : " + this.getWeapon().getName()
@@ -224,6 +259,14 @@ public class Player extends Inventory{
         + "\n \tMoney : " + this.getMoney());
         
     }
+
+    // private void creatLocations(){
+    //     safeHouse = new SafeHouse(this);
+    //     toolStore = new ToolStore(this);
+    //     cave = new Cave(this);
+    //     river = new River(this);
+    //     woods = new Woods(this);
+    // }
     
     
 }
