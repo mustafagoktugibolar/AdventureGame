@@ -193,6 +193,7 @@ public class Player extends Inventory{
                 break;
             }
 
+            //FINISING THE GAME
             if(!location.onLocation()){
                 System.out.println("Game Over!");
                 break;

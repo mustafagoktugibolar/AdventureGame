@@ -12,6 +12,7 @@ public class SafeHouse extends Location {
 
     @Override
     public boolean onLocation() throws InterruptedException {
+        //RECOVER HEALTH
         renewHealth();
         System.out.println("You are on safe House!\n"
         + "Health Renewed!\n"
