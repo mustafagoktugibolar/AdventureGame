@@ -1,7 +1,6 @@
 package Location.Battle;
 
 import java.util.Random;
-
 import Character.Player;
 import Location.Location;
 import Location.Battle.Obstacles.Obstacle;
@@ -13,6 +12,8 @@ public abstract class BattleLocation extends Location{
     private int maxObstacle;
     private static int tempObsNumber;
     private boolean isRun = false;
+    private Random random = new Random();
+    private boolean queue;
 
 
 
@@ -56,8 +57,12 @@ public abstract class BattleLocation extends Location{
 
     public int randomObstacleNumber(){
         
-        Random random = new Random();
         return random.nextInt(this.getMaxObstacle()) + 1;
+    }
+
+    public boolean randomQueue(){
+        queue = random.nextBoolean();
+        return queue;
     }
 
 
@@ -73,11 +78,13 @@ public abstract class BattleLocation extends Location{
 
         if(selectedAction.equals("F")){
             //FIGHT
+            randomQueue();
             if(combat(obsNumber)){
                 if(tempObsNumber == 0){
                     System.out.println("You Killed All Obstacles!");
                 }
                 else{
+                    maxObstacle += tempObsNumber;
                     System.out.println("Running Back!");
                 }
                 return true;
@@ -117,25 +124,27 @@ public abstract class BattleLocation extends Location{
 
 
     private void fight(int tempObsNum) throws InterruptedException{
-        System.out.print("(H)it or (R)un : ");
-        String input = sc.nextLine().toUpperCase();
+        if(queue){
+            System.out.print("(H)it or (R)un : ");
+            String input = sc.nextLine().toUpperCase();
 
-        System.out.println("Obstacle Left : " + tempObsNum);
+            System.out.println("Obstacle Left : " + tempObsNum);
 
-        if(input.equals("H")){
-            System.out.println("\tYou hit " + this.getPlayer().getTotalDamage() + "!");
+            if(input.equals("H")){
+                System.out.println("\tYou hit " + this.getPlayer().getTotalDamage() + "!");
+                queue = false;
             
-            if(obstacle.getHealth() - this.getPlayer().getTotalDamage() < 0){
-                this.getObstacle().setHealth(0);
-                
-            }
-            else{
-                this.getObstacle().setHealth(obstacle.getHealth() - this.getPlayer().getTotalDamage());
-                
-            }
-            afterHit();
+                if(obstacle.getHealth() - this.getPlayer().getTotalDamage() < 0){
+                    this.getObstacle().setHealth(0); 
+                }
+                else{
+                    this.getObstacle().setHealth(obstacle.getHealth() - this.getPlayer().getTotalDamage());
+                }
+                afterHit();
             
-
+            }
+        }
+        
             if(this.getObstacle().getHealth() > 0){
                 System.out.println("\n \tObstacle hit you!");
                 int obstacleDamage = this.getObstacle().getDamage() - this.getPlayer().getArmor().getDodge();
@@ -148,6 +157,7 @@ public abstract class BattleLocation extends Location{
                 }
                 else{
                     this.getPlayer().setHealth(this.getPlayer().getHealth() - obstacleDamage);
+                    queue = true;
                 }
                 afterHit();
             }
@@ -158,15 +168,12 @@ public abstract class BattleLocation extends Location{
                 if(tempObsNumber > 0){
                     this.getObstacle().setHealthToDefault();
                 }
-               
+                else{
+                    isRun = true;
+                    
+                }   
             }
-        }
-        else{
-            isRun = true;
-            
-        }
-        
-    }  
+        }  
 
     private void printStats(){
         getPlayer().printInfo();
